@@ -22,7 +22,8 @@ jobs:
           version: 'latest'
           
       - name: Set branch environment variable
-        run: echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+        #run: echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+        run: export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD) && echo "${GIT_BRANCH}"
         
       - name: Run Snyk to check for vulnerabilities
         run: snyk test --report --project-name="javedfaruquee1/crossplane"
