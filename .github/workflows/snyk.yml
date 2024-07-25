@@ -25,6 +25,6 @@ jobs:
         run: echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
         
       - name: Run Snyk to check for vulnerabilities
-        run: snyk test
+        run: snyk test --report --project-name="javedfaruquee1/crossplane"
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
