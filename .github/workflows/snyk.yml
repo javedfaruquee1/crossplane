@@ -20,7 +20,10 @@ jobs:
         uses: snyk/actions/setup@master
         with:
           version: 'latest'
-
+          
+      - name: Set branch environment variable
+        run: echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+        
       - name: Run Snyk to check for vulnerabilities
         run: snyk test
         env:
