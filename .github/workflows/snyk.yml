@@ -1,0 +1,27 @@
+name: Snyk Security Scan
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  snyk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Snyk
+        uses: snyk/actions/setup@v1
+        with:
+          version: 'latest'
+
+      - name: Run Snyk to check for vulnerabilities
+        run: snyk test
+        env:
+          SNYK_TOKEN: 6557c395-f377-46ae-8c22-1568742dbb2e
